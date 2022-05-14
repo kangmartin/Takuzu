@@ -21,7 +21,7 @@ void menu1(void){
 }
 
 void sous_menu1 (void){
-    printf("------------------\n");
+    printf("-------------------\n");
     printf("1) JOUER \n");
     printf("2) saisir manuellement un masque\n");
     printf("3) generer automatiquement un masque\n");
