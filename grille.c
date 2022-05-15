@@ -31,7 +31,7 @@ int ** saisir_masque(void) { // L'utilisateur saisi manuellement toutes cases du
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
-            printf(" %s\t\t", masque_saisi[i][j] = "?");
+            printf(" %d\t\t", masque_saisi[i][j] = 8);
         }
         printf("\n");
     }
@@ -64,7 +64,7 @@ int ** saisir_masque(void) { // L'utilisateur saisi manuellement toutes cases du
         }
         printf("%d %d\n", lettre2, chiffre);
 
-        if (masque_saisi[chiffre][lettre2] == "?") {
+        if (masque_saisi[chiffre][lettre2] == 8) {
             printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
             scanf("%d", &masque_saisi[chiffre][lettre2]);
 
