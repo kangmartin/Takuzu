@@ -352,7 +352,7 @@ void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_
                 int nb = rand() % 2;
                 grille_jeu[chiffre][lettre2] = nb;
                 printf("Place le chiffre %d\n",grille_jeu[chiffre][lettre2]);
-                sleep(2);
+                sleep(4);
             }
 
             switch(choix)
@@ -438,8 +438,11 @@ void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_
     {
         *statut2jeu = 5;
     }
-    printf("Entrez le chiffre 1 pour passer au prochain coup de l'ordi:");
-    scanf("%d",&suite);
+    if(statut_auto == 1){
+        printf("Entrez le chiffre 1 pour passer au prochain coup de l'ordi:");
+        scanf("%d",&suite);
+    }
+
 
 
 }
@@ -559,7 +562,7 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
                 int nb = rand() % 2;
                 grille_jeu[chiffre][lettre2] = nb;
                 printf("Place le chiffre %d\n",grille_jeu[chiffre][lettre2]);
-                sleep(2);
+                sleep(4);
             }
             placementEffectif = 0;
 
@@ -646,8 +649,10 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
     {
         *statut2jeu = 5;
     }
-    printf("Entrez le chiffre 1 pour passer au prochain coup de l'ordi:");
-    scanf("%d",&suite);
+    if(statut_auto == 1){
+        printf("Entrez le chiffre 1 pour passer au prochain coup de l'ordi:");
+        scanf("%d",&suite);
+    }
 
 }
 
