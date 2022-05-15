@@ -1,22 +1,37 @@
+//
+//
+//Martin KANG
+//Léa VARING
+//L1-Groupe E
+//
+// PROJET TAKUZU
+//
+//
+
 #include "verification.h"
-#include <stdlib.h>
 #include <stdio.h>
 
 
-
+/*
+ * Fonction de verification des differentes règles du Takuzu
+ * Lignes 30 à 118: Verification des lignes et colonnes identiques
+ * Lignes 120 à 264: Verification du nombre consécutif de 0 ou de 1 en ligne et colonne
+ * */
 
 void regles(int **tableau, int *resultat)
+
 {
     int i, j, lig = 4, col = 4,verif=0,nombreDeZeroCol=0,nombreDeUnCol=0,nombreDeZeroLigne=0,nombreDeUnLigne=0,videColonne=0,videLigne=0;
     int erreur1 =0, erreur2 = 0,erreur3 = 0,erreur4=0,erreur5=0;
-    int consecutive[4]={0};
+    int consecutive[4]={0}; // Compte le nombre de colonne
     int compteurZero = 0;
     int compteurUn = 0;
     int consecutiveLigne[4]={0};
+
     for (i = 0; i < lig; i++)
     {
 
-        for (j = 0; j < col; j++)
+        for (j = 0; j < col; j++) // Boucle qui parcours les colonnes de la grille en verifiant que les colonnes ne sont pas identiques
         {
 
             consecutiveLigne[j]=tableau[i][j];

@@ -1,3 +1,17 @@
+//
+//
+//Martin KANG
+//Léa VARING
+//L1-Groupe E
+//
+// PROJET TAKUZU
+//
+//
+/*
+ * Base de données avec les grilles de solution
+ * Solution 1 à 3 : 4x4
+ * Solution 4 à 6: 8x8
+ */
 int solution1 [4][4]={
         {1, 0, 0, 1},
         {1, 0, 1, 0},

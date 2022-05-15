@@ -1,7 +1,12 @@
 //
-// Created by Léa Varing on 29/04/2022.
 //
-
+//Martin KANG
+//Léa VARING
+//L1-Groupe E
+//
+// PROJET TAKUZU
+//
+//
 #include "grille.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,12 +14,16 @@
 #include "liste_grille.c"
 #include "verification.h"
 
-int ** saisir_masque(void) {
+/*
+ *  Certaines fonctions sont en dupliquées pour la version en 8x8
+ */
+
+int ** saisir_masque(void) { // L'utilisateur saisi manuellement toutes cases du masque avec les valeurs qu'il veut
 
     char lettre = 0,lettre2=0;
     int chiffre = 0;
 
-    int ** masque_saisi = (int **) malloc(4 * sizeof(int )); //allocation des colonnes
+    int ** masque_saisi = (int **) malloc(4 * sizeof(int )); // allocation des colonnes
     int i, j;
 
     for (i = 0; i < 4; i++)
@@ -30,7 +39,7 @@ int ** saisir_masque(void) {
     int k=0;
     do {
 
-        printf("Choissisez ou vous souhaiter placer (exemple: A1,B2...):");
+        printf("Choissisez quelle case vous souhaitez remplir (Exemple: A1. B2...):");
         scanf(" %c%d", &lettre, &chiffre);
 
 
@@ -56,7 +65,7 @@ int ** saisir_masque(void) {
         printf("%d %d\n", lettre2, chiffre);
 
         if (masque_saisi[chiffre][lettre2] == "?") {
-            printf("\nQuelle valeur souhaiter vous placer ? (0 ou 1):");
+            printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
             scanf("%d", &masque_saisi[chiffre][lettre2]);
 
             for(i=0;i<4;i++){
@@ -96,7 +105,7 @@ int ** saisir_masque2(void) {
     int k=0;
     do {
 
-        printf("Choissisez ou vous souhaiter placer (exemple: A1,B2...):");
+        printf("Choissisez quelle case vous souhaitez remplir (Exemple: A1. B2...):");
         scanf(" %c%d", &lettre, &chiffre);
 
 
@@ -138,7 +147,7 @@ int ** saisir_masque2(void) {
         printf("%d %d\n", lettre2, chiffre);
 
         if (masque_saisi[chiffre][lettre2] == 8) {
-            printf("\nQuelle valeur souhaiter vous placer ? (0 ou 1):");
+            printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
             scanf("%d", &masque_saisi[chiffre][lettre2]);
 
             for(i=0;i<8;i++){
@@ -159,14 +168,14 @@ int ** saisir_masque2(void) {
 
 
 
-int grille_aleatoire(int *choix) {
+int grille_aleatoire(int *choix) { // Tire au sort un chiffre entre 1 et 3
 
     srand(time(NULL));
     int nbgen = rand() % 3 + 1;
     *choix = nbgen;
 }
 
-int ** generation_alea_masque(void) {
+int ** generation_alea_masque(void) { // Genere aléatoirement un masque
     srand(time(NULL));
 
     int **masque_alea = (int **) malloc(4 * sizeof(int *)); //allocation des colonnes
@@ -203,7 +212,7 @@ int ** generation_alea_masque2(void) {
 }
 
 
-int affichage(int solution [4][4], int ** masque_alea2,int ** grille_de_jeu){
+int affichage(int solution [4][4], int ** masque_alea2,int ** grille_de_jeu){ // Affiche la grille de jeu en fonction du masque et de la grille soltion
 
 
     int i,j;
@@ -249,6 +258,11 @@ int affichage2(int solution [8][8], int ** masque_alea2,int ** grille_de_jeu){
 }
 
 void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_verif,int *statut2jeu,int choix)
+/*
+ * Fonction qui permet à l'utilisateur de jouer en remplissant sucessivement toutes les cases par une coordoonnée
+ * Chaque fois que le joueur joue son coup est vérifié par la fonction règle (fichier verification.c)
+ * La variable statut2jeu est incrémentée à chaque fois que le joueur joue un coup incorrect
+ * */
 {
 
     int partie_gagne = 0;
@@ -259,10 +273,10 @@ void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_
             }
         }
     }
-    if(partie_gagne!=0)
+    if(partie_gagne!=0) // Si l'utilisataur gagne ou perd il sors de la boucle
     {
         int placementEffectif = 0;
-        printf("Choissisez ou vous souhaiter placer (exemple: A1,B2...):");
+        printf("Choissisez ou vous souhaitez vous placer (exemple: A1,B2...):");
         scanf(" %c%d",&lettre,&chiffre);
 
 
@@ -295,7 +309,7 @@ void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_
 
         if(grille_jeu[chiffre][lettre2]==-1)
         {
-            printf("\nQuelle valeur souhaiter vous placer ? (0 ou 1):");
+            printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
             scanf("%d",&grille_jeu[chiffre][lettre2]);
             placementEffectif = 0;
 
@@ -371,7 +385,7 @@ void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_
 
                 }
                 else{
-                    printf("\nCoup correcte !\n");
+                    printf("\nCoup correct !\n");
                 }
 
 
@@ -401,7 +415,7 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
     if(partie_gagne!=0)
     {
         int placementEffectif = 0;
-        printf("Choissisez ou vous souhaiter placer (exemple: A1,B2...):");
+        printf("Choissisez quelle case vous souhaitez remplir (Exemple: A1. B2...):");
         scanf(" %c%d",&lettre,&chiffre);
 
 
@@ -462,7 +476,7 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
 
         if(grille_jeu[chiffre][lettre2]==-1)
         {
-            printf("\nQuelle valeur souhaiter vous placer ? (0 ou 1):");
+            printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
             scanf("%d",&grille_jeu[chiffre][lettre2]);
             placementEffectif = 0;
 
@@ -538,7 +552,7 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
 
                 }
                 else{
-                    printf("\nCoup correcte !\n");
+                    printf("\nCoup correct !\n");
                 }
 
 
@@ -550,46 +564,7 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
         *statut2jeu = 5;
     }
 
-
 }
-
-/*void affichage_jeu(int solution,int **masqueAlea,int **grille_jeu, char lettre, int chiffre, int lettre2, int statut_jeu, int *resultat_verif, int grille_choisie)
-{
-    printf("\n----------------- Grille masque aleatoirement generee: ------------------- \n");
-    for(int i=0; i<4; i++){
-        for (int j=0; j<4; j++){
-            printf("%d\t", masqueAlea[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n=============== Grille de jeu =====================\n");
-    affichage(solution, masqueAlea, grille_jeu);
-    do{
-        jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
-        if(statut_jeu<3){
-            printf("Nombre de vies: %d\n\n",3-statut_jeu);
-        }
-    }while (statut_jeu<3);
-}
-
-void affichage_jeu2(int solution,int **masqueAlea,int **grille_jeu, char lettre, int chiffre, int lettre2, int statut_jeu, int *resultat_verif, int grille_choisie){
-    printf("\n----------------- Grille masque aleatoirement generee: ------------------- \n");
-    for(int i=0; i<8; i++){
-        for (int j=0; j<8; j++){
-            printf("%d\t", masqueAlea[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n=============== Grille de jeu =====================\n");
-    affichage2(solution, masqueAlea, grille_jeu);
-    do{
-        jeu2(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
-        if(statut_jeu<3){
-            printf("Nombre de vies: %d\n\n",3-statut_jeu);
-        }
-    }while (statut_jeu<3);
-
-}*/
 
 
 

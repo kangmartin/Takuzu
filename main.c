@@ -1,7 +1,16 @@
+//
+//
+//Martin KANG
+//Léa VARING
+//L1-Groupe E
+//
+// PROJET TAKUZU
+//
+//
+
 #include <stdio.h>
 #include "menu.h"
 #include "grille.h"
-
 
 
 int main() {
@@ -11,6 +20,7 @@ int main() {
     int grille_choisie = 0;
     int choix, resultat_verif = -1;
     int **manuel_masque = solution1;
+    int **manuel_masque2 = solution3;
     int statut_jeu = 0;
     char lettre = 0,lettre2=0;
     int chiffre = 0;
@@ -158,16 +168,16 @@ int main() {
                     }
                     if(choix == 0){
 
-                        manuel_masque = saisir_masque2();
+                        manuel_masque2 = saisir_masque2();
                         printf("\n----------------- Grille masque manuellement saisi: ------------------- \n");
                         for(int i=0; i<8; i++){
                             for (int j=0; j<8; j++){
-                                printf("%d\t", manuel_masque[i][j]);
+                                printf("%d\t", manuel_masque2[i][j]);
                             }
                             printf("\n");
                         }
                         printf("\n=============== Grille de jeu =====================\n");
-                        affichage(solution1, manuel_masque, grille_jeu);
+                        affichage(solution3, manuel_masque2, grille_jeu);
                         do{
                             jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
                             if(statut_jeu<3){
@@ -235,14 +245,15 @@ int main() {
             return 0;
     }
     if(statut_jeu == 5){
-        printf("\n======================== BRAVO, la partie est gagne ! ========================\n");
+
+        printf("\n======================== BRAVO :) Vous avez gagnee ! ========================\n");
     }
     else if(statut_jeu == 0)
     {
         printf("FIN DU PROGRAMME");
     }
     else{
-        printf("\n======================== PERDU ! Relance le programme pour relancer une partie ========================\n");
+        printf("\n======================== DOMMAGE :( Vous avez perdu !  ========================\n");
     }
 }
 

@@ -1,3 +1,13 @@
+//
+//
+//Martin KANG
+//Léa VARING
+//L1-Groupe E
+//
+// PROJET TAKUZU
+//
+//
+
 #ifndef PROJETTAKUZUC_MENU_H
 #define PROJETTAKUZUC_MENU_H
 
