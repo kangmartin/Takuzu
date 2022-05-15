@@ -146,6 +146,7 @@ int main() {
 
 
                 case 2:
+
                     choix_taille();
                     scanf("%d", &choix);
                     if(choix==1){
@@ -190,39 +191,73 @@ int main() {
                 case 3:
                     choix_taille();
                     scanf("%d", &choix);
-                    if(choix == 1)
-                    {
-                        printf("\n----------------- Grille masque aleatoirement generee: ------------------- \n");
-                        for(int i=0; i<4; i++){
-                            for (int j=0; j<4; j++){
-                                printf("%d\t", masqueAlea_auto[i][j]);
-                            }
-                            printf("\n");
-                        }
-                        printf("\n=============== Grille de jeu 4x4 Numero 1 =====================\n");
-                        affichage(solution1, masqueAlea_auto, grille_jeu);
-                        printf("\n=============== Grille de jeu 4x4 Numero 2=====================\n");
-                        affichage(solution2, masqueAlea_auto, grille_jeu);
-                        printf("\n=============== Grille de jeu 4x4 Numero 3=====================\n");
-                        affichage(solution3, masqueAlea_auto, grille_jeu);
-                    }
-                    if(choix==0)
-                    {
-                        printf("\n----------------- Grille masque aleatoirement generee: ------------------- \n");
+                    if (choix == 1) {
+
+                        int **masqueAlea = generation_alea_masque();
+                        grille_aleatoire(&grille_choisie);
+                        printf("\n----------------- Grille masque automatiquement genere: ------------------- \n");
                         for(int i=0; i<8; i++){
                             for (int j=0; j<8; j++){
-                                printf("%d\t", masqueAlea_auto8[i][j]);
+                                printf("%d\t", masqueAlea[i][j]);
                             }
                             printf("\n");
                         }
-                        printf("\n=============== Grille de jeu 8x8 Numero 1=====================\n");
-                        affichage2(solution4, masqueAlea_auto8, grille_jeu);
-                        printf("\n=============== Grille de jeu 8x8 Numero 2=====================\n");
-                        affichage2(solution5, masqueAlea_auto8, grille_jeu);
-                        printf("\n=============== Grille de jeu 8x8 Numero 3=====================\n");
-                        affichage2(solution6, masqueAlea_auto8, grille_jeu);
-                    }
+                        switch (grille_choisie) {
+                            case 1:
 
+                                printf("\n=============== Grille de jeu =====================\n");
+                                affichage(solution1, masqueAlea, grille_jeu);
+                                break;
+
+                            case 2:
+
+                                printf("\n=============== Grille de jeu =====================\n");
+                                affichage(solution2, masqueAlea, grille_jeu);
+                                break;
+
+                            case 3:
+
+                                printf("\n=============== Grille de jeu =====================\n");
+                                affichage(solution3, masqueAlea, grille_jeu);
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                    }else if(choix==0){
+                        int **grille_jeu = generation_alea_masque2();
+                        int **masqueAlea = generation_alea_masque2();
+                        grille_aleatoire(&grille_choisie);
+                        printf("\n----------------- Grille masque automatiquement genere: ------------------- \n");
+                        for(int i=0; i<8; i++){
+                            for (int j=0; j<8; j++){
+                                printf("%d\t", masqueAlea[i][j]);
+                            }
+                            printf("\n");
+                        }
+                        switch (grille_choisie) {
+                            case 1:
+
+                                printf("\n=============== Grille de jeu =====================\n");
+                                affichage2(solution4, masqueAlea, grille_jeu);
+                                break;
+
+                            case 2:
+
+                                printf("\n=============== Grille de jeu =====================\n");
+                                affichage2(solution5, masqueAlea, grille_jeu);
+                                break;
+
+                            case 3:
+
+                                printf("\n=============== Grille de jeu =====================\n");
+                                affichage2(solution6, masqueAlea, grille_jeu);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
 
                     break;
                 case 4:
