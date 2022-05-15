@@ -25,8 +25,7 @@ int main() {
     char lettre = 0,lettre2=0;
     int chiffre = 0;
     int **grille_jeu = generation_alea_masque();
-    int **masqueAlea_auto = generation_alea_masque();
-    int **masqueAlea_auto8 = generation_alea_masque2();
+
     menu1();
     scanf("%d", &choix);
 
@@ -165,18 +164,36 @@ int main() {
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage(solution1, manuel_masque, grille_jeu);
+                                do{
+                                    jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 2:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage(solution2, manuel_masque, grille_jeu);
+                                do{
+                                    jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 3:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage(solution3, manuel_masque, grille_jeu);
+                                do{
+                                    jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             default:
@@ -203,18 +220,36 @@ int main() {
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage2(solution4, manuel_masque2, grille_jeu);
+                                do{
+                                    jeu2(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 2:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage2(solution5, manuel_masque2, grille_jeu);
+                                do{
+                                    jeu2(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 3:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage2(solution6, manuel_masque2, grille_jeu);
+                                do{
+                                    jeu2(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             default:
@@ -244,18 +279,36 @@ int main() {
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage(solution1, masqueAlea, grille_jeu);
+                                do{
+                                    jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 2:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage(solution2, masqueAlea, grille_jeu);
+                                do{
+                                    jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 3:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage(solution3, masqueAlea, grille_jeu);
+                                do{
+                                    jeu(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             default:
@@ -278,18 +331,36 @@ int main() {
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage2(solution4, masqueAlea, grille_jeu);
+                                do{
+                                    jeu2(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 2:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage2(solution5, masqueAlea, grille_jeu);
+                                do{
+                                    jeu2(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
 
                             case 3:
 
                                 printf("\n=============== Grille de jeu =====================\n");
                                 affichage2(solution6, masqueAlea, grille_jeu);
+                                do{
+                                    jeu2(lettre,chiffre,lettre2,grille_jeu,&resultat_verif,&statut_jeu,grille_choisie);
+                                    if(statut_jeu<3){
+                                        printf("Nombre de vies: %d\n\n",3-statut_jeu);
+                                    }
+                                }while (statut_jeu<3);
                                 break;
                             default:
                                 break;
