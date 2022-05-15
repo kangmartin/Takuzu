@@ -13,6 +13,7 @@
 #include <time.h>
 #include "liste_grille.c"
 #include "verification.h"
+#include "unistd.h"
 
 /*
  *  Certaines fonctions sont en dupliquées pour la version en 8x8
@@ -22,6 +23,7 @@ int ** saisir_masque(void) { // L'utilisateur saisi manuellement toutes cases du
 
     char lettre = 0,lettre2=0;
     int chiffre = 0;
+    int suite;
 
     int ** masque_saisi = (int **) malloc(4 * sizeof(int )); // allocation des colonnes
     int i, j;
@@ -257,61 +259,101 @@ int affichage2(int solution [8][8], int ** masque_alea2,int ** grille_de_jeu){
 
 }
 
-void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_verif,int *statut2jeu,int choix)
+void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_verif,int *statut2jeu,int choix, int statut_auto)
 /*
  * Fonction qui permet à l'utilisateur de jouer en remplissant sucessivement toutes les cases par une coordoonnée
  * Chaque fois que le joueur joue son coup est vérifié par la fonction règle (fichier verification.c)
  * La variable statut2jeu est incrémentée à chaque fois que le joueur joue un coup incorrect
  * */
 {
-
+    int ordi_chiffre,ordi_lettre, ordi_compteur = 0;
     int partie_gagne = 0;
+    int suite;
     for(int i=0; i<4; i++){
         for (int j=0; j<4; j++){
             if(grille_jeu[i][j]==-1){
                 partie_gagne++;
+
             }
+
         }
     }
     if(partie_gagne!=0) // Si l'utilisataur gagne ou perd il sors de la boucle
     {
         int placementEffectif = 0;
-        printf("Choissisez ou vous souhaitez vous placer (exemple: A1,B2...):");
-        scanf(" %c%d",&lettre,&chiffre);
+        ordi_compteur = 0;
+        if(statut_auto == 0){
+            printf("Choissisez ou vous souhaitez vous placer (exemple: A1,B2...):");
+            scanf(" %c%d",&lettre,&chiffre);
+        }else {
+            for(int i=0; i<4; i++){
+                for (int j=0; j<4; j++){
+                    if(grille_jeu[i][j]==-1){
+                        if (ordi_compteur == 0)
+                        {
+                            ordi_lettre = j;
+                            ordi_chiffre = i;
+                            printf("L'ordinateur a choisi de joue sur la ligne %d et la colonne %d\n",i+1,j+1);
 
 
-        if(lettre=='A'){
-            lettre2 = 0;
-        }
-        else if(lettre=='B'){
-            lettre2 = 1;
-        }
-        else if(lettre == 'C'){
-            lettre2 = 2;
-        }
-        else{
-            lettre2 = 3;
+
+                        }
+                        ordi_compteur++;
+                    }
+
+                }
+            }
+
         }
 
-        if(chiffre==1){
-            chiffre = 0;
+
+        if (statut_auto == 0){
+            if(lettre=='A'){
+                lettre2 = 0;
+            }
+            else if(lettre=='B'){
+                lettre2 = 1;
+            }
+            else if(lettre == 'C'){
+                lettre2 = 2;
+            }
+            else{
+                lettre2 = 3;
+            }
+
+            if(chiffre==1){
+                chiffre = 0;
+            }
+            else if(chiffre==2){
+                chiffre = 1;
+            }
+            else if(chiffre == 3){
+                chiffre = 2;
+            }
+            else{
+                chiffre = 3;
+            }
+        }else{
+            lettre2 = ordi_lettre;
+            chiffre = ordi_chiffre;
         }
-        else if(chiffre==2){
-            chiffre = 1;
-        }
-        else if(chiffre == 3){
-            chiffre = 2;
-        }
-        else{
-            chiffre = 3;
-        }
-        printf("%d %d\n",lettre2,chiffre);
 
         if(grille_jeu[chiffre][lettre2]==-1)
         {
-            printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
-            scanf("%d",&grille_jeu[chiffre][lettre2]);
-            placementEffectif = 0;
+            if(statut_auto == 0){
+                printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
+                scanf("%d",&grille_jeu[chiffre][lettre2]);
+                placementEffectif = 0;
+
+
+            }
+            else{
+                srand(time(NULL));
+                int nb = rand() % 2;
+                grille_jeu[chiffre][lettre2] = nb;
+                printf("Place le chiffre %d\n",grille_jeu[chiffre][lettre2]);
+                sleep(2);
+            }
 
             switch(choix)
             {
@@ -396,15 +438,19 @@ void jeu(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_
     {
         *statut2jeu = 5;
     }
+    printf("Entrez le chiffre 1 pour passer au prochain coup de l'ordi:");
+    scanf("%d",&suite);
 
 
 }
 
 
-void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_verif,int *statut2jeu,int choix)
+void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat_verif,int *statut2jeu,int choix, int statut_auto)
 {
-    // affichage(solution1, masqueAlea, grille_jeu);
+
+    int ordi_chiffre,ordi_lettre, ordi_compteur = 0;
     int partie_gagne = 0;
+    int suite;
     for(int i=0; i<8; i++){
         for (int j=0; j<8; j++){
             if(grille_jeu[i][j]==-1){
@@ -415,8 +461,29 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
     if(partie_gagne!=0)
     {
         int placementEffectif = 0;
-        printf("Choissisez quelle case vous souhaitez remplir (Exemple: A1. B2...):");
-        scanf(" %c%d",&lettre,&chiffre);
+        if(statut_auto == 0){
+            printf("Choissisez ou vous souhaitez vous placer (exemple: A1,B2...):");
+            scanf(" %c%d",&lettre,&chiffre);
+        }else {
+            for(int i=0; i<8; i++){
+                for (int j=0; j<8; j++){
+                    if(grille_jeu[i][j]==-1){
+                        if (ordi_compteur == 0)
+                        {
+                            ordi_lettre = j;
+                            ordi_chiffre = i;
+                            printf("L'ordinateur a choisi de joue sur la ligne %d et la colonne %d\n",i+1,j+1);
+
+
+
+                        }
+                        ordi_compteur++;
+                    }
+
+                }
+            }
+
+        }
 
 
         if(lettre=='A'){
@@ -444,7 +511,7 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
         }
 
 
-
+        if (statut_auto==0){
         if(chiffre==1){
             chiffre = 0;
         }
@@ -470,14 +537,30 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
         else{
             chiffre = 7;
         }
+    }else{
+        lettre2 = ordi_lettre;
+        chiffre = ordi_chiffre;
+    }
 
 
         printf("%d %d\n",lettre2,chiffre);
 
         if(grille_jeu[chiffre][lettre2]==-1)
         {
-            printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
-            scanf("%d",&grille_jeu[chiffre][lettre2]);
+            if(statut_auto == 0){
+                printf("\nQuelle valeur souhaitez vous placer ? (0 ou 1):");
+                scanf("%d",&grille_jeu[chiffre][lettre2]);
+                placementEffectif = 0;
+
+
+            }
+            else{
+                srand(time(NULL));
+                int nb = rand() % 2;
+                grille_jeu[chiffre][lettre2] = nb;
+                printf("Place le chiffre %d\n",grille_jeu[chiffre][lettre2]);
+                sleep(2);
+            }
             placementEffectif = 0;
 
             switch(choix)
@@ -563,6 +646,8 @@ void jeu2(char lettre, int chiffre, int lettre2, int **grille_jeu, int *resultat
     {
         *statut2jeu = 5;
     }
+    printf("Entrez le chiffre 1 pour passer au prochain coup de l'ordi:");
+    scanf("%d",&suite);
 
 }
 
